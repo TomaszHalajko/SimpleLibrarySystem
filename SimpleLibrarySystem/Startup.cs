@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SimpleLibrarySystem.Data;
+using SimpleLibrarySystem.Data.Services;
 
 namespace SimpleLibrarySystem
 {
@@ -35,7 +36,7 @@ namespace SimpleLibrarySystem
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-
+            services.AddSingleton<BooksManagementService>();
             services.AddLocalization();
         }
 

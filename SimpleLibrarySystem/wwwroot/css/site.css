@@ -190,3 +190,17 @@ app {
 .navbar-nav {
     float: right !important;
 }
+
+.btn-pagination{
+    background-color: dodgerblue;
+    border:none;
+    color:white;
+    padding: 0px 10px;
+    height: 60%;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-pagination:hover{
+    background-color: royalblue;
+}

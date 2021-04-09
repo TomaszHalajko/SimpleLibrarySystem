@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace SimpleLibrarySystem.Data.Tables
 {
-    public class Book
+    public class Customer
     {
         [Key]
-        public string BookID { get; set; }
+        public string CustomerID { get; set; }
         public string Name { get; set; }
-        public string Author { get; set; }
-        public string Publisher { get; set; }
-        public int ReleaseDate { get; set; }
-        public string ISBN { get; set; }
+        public string Vorname { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
     }
 }

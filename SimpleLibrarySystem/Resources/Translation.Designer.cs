@@ -61,6 +61,60 @@ namespace SimpleLibrarySystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Author filter.
+        /// </summary>
+        public static string AuthorFilter {
+            get {
+                return ResourceManager.GetString("AuthorFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author.
+        /// </summary>
+        public static string BookAuthor {
+            get {
+                return ResourceManager.GetString("BookAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Publisher.
+        /// </summary>
+        public static string BookPublisher {
+            get {
+                return ResourceManager.GetString("BookPublisher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Release date.
+        /// </summary>
+        public static string BookReleaseDate {
+            get {
+                return ResourceManager.GetString("BookReleaseDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string BookStatus {
+            get {
+                return ResourceManager.GetString("BookStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string BookTitle {
+            get {
+                return ResourceManager.GetString("BookTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created by.
         /// </summary>
         public static string CreatedBy {
@@ -97,6 +151,15 @@ namespace SimpleLibrarySystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading data....
+        /// </summary>
+        public static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login data for library worker.
         /// </summary>
         public static string LoginData {
@@ -111,6 +174,15 @@ namespace SimpleLibrarySystem.Resources {
         public static string Management {
             get {
                 return ResourceManager.GetString("Management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of.
+        /// </summary>
+        public static string PaginationOf {
+            get {
+                return ResourceManager.GetString("PaginationOf", resourceCulture);
             }
         }
         
@@ -138,6 +210,15 @@ namespace SimpleLibrarySystem.Resources {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title filter.
+        /// </summary>
+        public static string TitleFilter {
+            get {
+                return ResourceManager.GetString("TitleFilter", resourceCulture);
             }
         }
         
