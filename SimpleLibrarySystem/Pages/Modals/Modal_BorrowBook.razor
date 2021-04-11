@@ -1,0 +1,307 @@
+﻿@using SimpleLibrarySystem.Data.Services
+@using SimpleLibrarySystem.Data.Tables
+@inject BooksManagementService BooksService
+@inject CustomerManagementService CustomerService
+@inject IStringLocalizer<SimpleLibrarySystem.Resources.Translation> Localizer
+
+@if (currentBook != null)
+{
+    <div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 1000px;" role="document">
+            <div class="modal-content" style="max-height:50em" >
+                <div class="modal-header">
+                    <h5 class="modal-title">@Localizer["BorrowBook"]</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="() => Close()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <p class="p-modal-th">ID:</p>
+                        </div>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" placeholder="book id" @bind="currentBook.BookID" disabled />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <p class="p-modal-th">@Localizer["BookTitle"]:</p>
+                        </div>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" placeholder="book title" @bind="currentBook.Name" disabled />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <p class="p-modal-th">@Localizer["BookAuthor"]:</p>
+                        </div>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" placeholder="book title" @bind="currentBook.Author" disabled />
+                        </div>
+                    </div>
+
+                    <h5 style="margin-top: 10px;">@Localizer["SelectCustomer"]</h5>
+
+                    @if (customers == null)
+                    {
+                    <p><em>@Localizer["Loading"]</em></p>
+                    }
+                    else
+                    {
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>@Localizer["CustomerName"]</th>
+                                    <th>@Localizer["CustomerVorname"]</th>
+                                    <th>@Localizer["CustomerPhoneNumber"]</th>
+                                    <th>@Localizer["CustomerEmail"]</th>
+                                    <th>@Localizer["CustomerAddress"]</th>
+                                    <th></th>
+                                </tr>
+                                <tr style="height: 30px; color:#FFFFFF;">
+                                    <td align="center">
+                                        <input class="form-control" type="text" placeholder="@Localizer["Filter"]" @bind="FilterTitle" @bind:event="oninput" />
+                                    </td>
+                                    <td align="center">
+                                        <input class="form-control" type="text" placeholder="@Localizer["Filter"]" @bind="FilterAuthor" @bind:event="oninput" />
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    filteredCustomers = customers.Where(e => (String.IsNullOrEmpty(FilterTitle) || e.CustomerID.Contains(FilterTitle, StringComparison.OrdinalIgnoreCase)) && (String.IsNullOrEmpty(FilterAuthor) || e.Name.Contains(FilterAuthor, StringComparison.OrdinalIgnoreCase))).ToList();
+                                }
+                                @for (int i = ((currentPage - 1) * itemsPerPage); i >= 0 && i < ((currentPage - 1) * itemsPerPage) + itemsPerPage && i < customers.Where(e => (String.IsNullOrEmpty(FilterTitle) || e.CustomerID.Contains(FilterTitle, StringComparison.OrdinalIgnoreCase)) && (String.IsNullOrEmpty(FilterAuthor) || e.Name.Contains(FilterAuthor, StringComparison.OrdinalIgnoreCase))).ToList().Count; i++)
+                                {
+                                    if (customers[i] != null)
+                                    {
+                                        Customer singleCustomer = filteredCustomers[i];
+                                <tr>
+                                    <td>@singleCustomer.CustomerID</td>
+                                    <td>@singleCustomer.Name</td>
+                                    <td>@singleCustomer.Vorname</td>
+                                    <td>@singleCustomer.PhoneNumber</td>
+                                    <td>@singleCustomer.Email</td>
+                                    <td>@singleCustomer.Address</td>
+                                    <td>
+                                        <button class="btn btn-primary" @onclick="() => SetCustomer(singleCustomer)">
+                                            @Localizer["Select"]
+                                        </button>
+                                    </td>
+                                </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                        <div class="row justify-content-md-start">
+                            <button class="btn btn-pagination" @onclick="StartPage"><i class="oi oi-media-skip-backward"></i></button>
+                            <button class="btn btn-pagination" @onclick="PreviousPage"><i class="oi oi-media-step-backward"></i></button>
+                            <p class="p-modal-th">@currentPage @Localizer["PaginationOf"] @maxPage</p>
+                            <button class="btn btn-pagination" @onclick="NextPage"><i class="oi oi-media-step-forward"></i></button>
+                            <button class="btn btn-pagination" @onclick="LastPage"><i class="oi oi-media-skip-forward"></i></button>
+                        </div>
+                        }
+                        @if (currentCustomer != null)
+                    {
+                        <h5 style="margin-top: 10px;">@Localizer["SelectedCustomer"]</h5>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">ID:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="book id" @bind="currentCustomer.CustomerID" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["CustomerVorname"]:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="book title" @bind="currentCustomer.Vorname" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["CustomerName"]:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="book title" @bind="currentCustomer.Name" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["CustomerPhoneNumber"]:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="book title" @bind="currentCustomer.PhoneNumber" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["CustomerEmail"]:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="book title" @bind="currentCustomer.Email" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["CustomerAddress"]:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="book title" @bind="currentCustomer.Address" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["From"]:</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" placeholder="From" value="@DateTime.UtcNow.ToString("d")" disabled />
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="p-modal-th" style="float:right;">@Localizer["To"]:</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" placeholder="Until" value="@DateTime.UtcNow.AddMonths(1).ToString("d")" disabled />
+                            </div>
+                        </div>
+                    }
+                    </div>
+                    <div class="modal-footer">
+                        @if (currentCustomer != null)
+                    {
+                        <button type="button" class="btn btn-primary" @onclick="() => BorrowBook()">@Localizer["Borrow"]</button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-primary" @onclick="() => BorrowBook()" disabled>@Localizer["Borrow"]</button>
+                    }
+
+                    </div>
+                </div>
+        </div>
+    </div>
+}
+
+
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+
+
+@code {
+    //modal
+    public Guid Guid = Guid.NewGuid();
+    public string ModalDisplay = "none;";
+    public string ModalClass = "";
+    public bool ShowBackdrop = false;
+    public List<Customer> customers;
+    private List<Customer> filteredCustomers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        customers = await CustomerService.GetCustomersListAsync();
+    }
+
+    public void Open(Book book)
+    {
+        ModalDisplay = "block;";
+        ModalClass = "Show";
+        ShowBackdrop = true;
+        currentBook = book;
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        ModalDisplay = "none";
+        ModalClass = "";
+        ShowBackdrop = false;
+        currentBook = null;
+        currentCustomer = null;
+        StateHasChanged();
+    }
+
+    public bool IsClosed()
+    {
+        return isSaved;
+    }
+
+    public Book currentBook;
+    public Customer currentCustomer;
+    public bool isSaved = false;
+
+    private async Task BorrowBook()
+    {
+        isSaved = await BooksService.SaveNewBorrowingAsync(currentCustomer, currentBook);
+        Close();
+    }
+
+    public void SetCustomer(Customer customer)
+    {
+        currentCustomer = customer;
+    }
+
+    //filters
+    private string _FilterTitle;
+    public string FilterTitle
+    {
+        get { return _FilterTitle; }
+        set { _FilterTitle = value; CalculatePages(); currentPage = 1; }
+    }
+
+    private string _FilterAuthor;
+    public string FilterAuthor
+    {
+        get { return _FilterAuthor; }
+        set { _FilterAuthor = value; CalculatePages(); currentPage = 1; }
+    }
+
+
+    //pagination
+    private int itemsPerPage = 4;
+    private int currentPage = 1;
+    private int maxPage = 1;
+
+    private void StartPage()
+    {
+        currentPage = 1;
+    }
+    private void PreviousPage()
+    {
+        if (currentPage > 1)
+            currentPage--;
+    }
+    private void NextPage()
+    {
+        if (currentPage < maxPage)
+            currentPage++;
+    }
+    private void LastPage()
+    {
+        currentPage = maxPage;
+    }
+    private void CalculatePages()
+    {
+        int count = customers.Where(e => (String.IsNullOrEmpty(FilterTitle) || e.CustomerID.Contains(FilterTitle, StringComparison.OrdinalIgnoreCase)) && (String.IsNullOrEmpty(FilterAuthor) || e.Name.Contains(FilterAuthor, StringComparison.OrdinalIgnoreCase))).ToList().Count;
+        maxPage = (count / itemsPerPage);
+        if (count % itemsPerPage > 0 || count == 0)
+            maxPage += 1;
+
+        if (currentPage > maxPage)
+            currentPage = maxPage;
+    }
+}

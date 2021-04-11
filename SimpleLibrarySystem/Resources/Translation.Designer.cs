@@ -70,6 +70,15 @@ namespace SimpleLibrarySystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Available.
+        /// </summary>
+        public static string Available {
+            get {
+                return ResourceManager.GetString("Available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Author.
         /// </summary>
         public static string BookAuthor {
@@ -115,11 +124,110 @@ namespace SimpleLibrarySystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Borrow.
+        /// </summary>
+        public static string Borrow {
+            get {
+                return ResourceManager.GetString("Borrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Borrow book.
+        /// </summary>
+        public static string BorrowBook {
+            get {
+                return ResourceManager.GetString("BorrowBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Borrowed until.
+        /// </summary>
+        public static string BorrowedUntil {
+            get {
+                return ResourceManager.GetString("BorrowedUntil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Borrow it.
+        /// </summary>
+        public static string BorrowIt {
+            get {
+                return ResourceManager.GetString("BorrowIt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created by.
         /// </summary>
         public static string CreatedBy {
             get {
                 return ResourceManager.GetString("CreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string CustomerAddress {
+            get {
+                return ResourceManager.GetString("CustomerAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-mail.
+        /// </summary>
+        public static string CustomerEmail {
+            get {
+                return ResourceManager.GetString("CustomerEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string CustomerName {
+            get {
+                return ResourceManager.GetString("CustomerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number.
+        /// </summary>
+        public static string CustomerPhoneNumber {
+            get {
+                return ResourceManager.GetString("CustomerPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vorname.
+        /// </summary>
+        public static string CustomerVorname {
+            get {
+                return ResourceManager.GetString("CustomerVorname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From.
+        /// </summary>
+        public static string From {
+            get {
+                return ResourceManager.GetString("From", resourceCulture);
             }
         }
         
@@ -205,6 +313,42 @@ namespace SimpleLibrarySystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Return it.
+        /// </summary>
+        public static string ReturnIt {
+            get {
+                return ResourceManager.GetString("ReturnIt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        public static string Select {
+            get {
+                return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select customer from table below.
+        /// </summary>
+        public static string SelectCustomer {
+            get {
+                return ResourceManager.GetString("SelectCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected customer data.
+        /// </summary>
+        public static string SelectedCustomer {
+            get {
+                return ResourceManager.GetString("SelectedCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Simple library system.
         /// </summary>
         public static string Title {
@@ -219,6 +363,15 @@ namespace SimpleLibrarySystem.Resources {
         public static string TitleFilter {
             get {
                 return ResourceManager.GetString("TitleFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        public static string To {
+            get {
+                return ResourceManager.GetString("To", resourceCulture);
             }
         }
         

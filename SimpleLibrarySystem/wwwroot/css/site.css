@@ -191,16 +191,36 @@ app {
     float: right !important;
 }
 
-.btn-pagination{
+.btn-pagination {
     background-color: dodgerblue;
-    border:none;
-    color:white;
+    border: none;
+    color: white;
     padding: 0px 10px;
     height: 60%;
     font-size: 16px;
     cursor: pointer;
+    margin: 5px;
 }
 
 .btn-pagination:hover{
     background-color: royalblue;
+}
+
+
+.modal-dialog{
+    overflow-y: initial !important;
+    overflow-x: initial !important;
+}
+
+.modal-body{
+    overflow-y: scroll;
+}
+
+
+input{
+    width: 100%;
+}
+
+#p-modal-th {
+    padding-top: 5px;
 }

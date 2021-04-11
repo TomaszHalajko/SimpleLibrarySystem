@@ -15,5 +15,6 @@ namespace SimpleLibrarySystem.Data.Tables
         public string Publisher { get; set; }
         public int ReleaseDate { get; set; }
         public string ISBN { get; set; }
+        public virtual ICollection<Borrowings> Borrowings { get; set; }
     }
 }

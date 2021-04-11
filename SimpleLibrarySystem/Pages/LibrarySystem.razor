@@ -1,8 +1,10 @@
-﻿@page "/LibraryCollection"
+﻿@page "/LibrarySystem"
 @using SimpleLibrarySystem.Data.Tables
 @using SimpleLibrarySystem.Data.Services
 @inject BooksManagementService BooksService
 @inject IStringLocalizer<SimpleLibrarySystem.Resources.Translation> Localizer
+
+<SimpleLibrarySystem.Pages.Modals.Modal_BorrowBook @ref="Modal"></SimpleLibrarySystem.Pages.Modals.Modal_BorrowBook>
 
 @if (books == null)
 {
@@ -21,6 +23,7 @@ else
                 <th>@Localizer["BookReleaseDate"]</th>
                 <th>ISBN</th>
                 <th>@Localizer["BookStatus"]</th>
+                <th></th>
             </tr>
             <tr style="height: 30px; color:#FFFFFF;">
                 <td></td>
@@ -30,6 +33,7 @@ else
                 <td align="center">
                     <input class="form-control" type="text" placeholder="@Localizer["AuthorFilter"]" @bind="FilterAuthor" @bind:event="oninput" />
                 </td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -45,22 +49,39 @@ else
                 if (books[i] != null)
                 {
                     Book singleBook = filteredBooks[i];
-                    <tr>
-                        <td>@singleBook.BookID</td>
-                        <td>@singleBook.Name</td>
-                        <td>@singleBook.Author</td>
-                        <td>@singleBook.Publisher</td>
-                        <td>@singleBook.ReleaseDate</td>
-                        <td>@singleBook.ISBN</td>
-                        <td>Status placeholder</td>
-                    </tr>
+            <tr>
+                <td>@singleBook.BookID</td>
+                <td>@singleBook.Name</td>
+                <td>@singleBook.Author</td>
+                <td>@singleBook.Publisher</td>
+                <td>@singleBook.ReleaseDate</td>
+                <td>@singleBook.ISBN</td>
+                @if (singleBook.Borrowings != null && singleBook.Borrowings.Count == 0)
+                {
+                <td>@Localizer["Available"]</td>
+                <td>
+                    <button class="btn btn-primary" style="width:100%;" @onclick="() => Modal.Open(singleBook)">
+                        @Localizer["BorrowIt"]
+                    </button>
+                </td>
+                }
+                else
+                {
+                <td>@Localizer["BorrowedUntil"] @singleBook.Borrowings.First().EndDate.ToString("d")</td>
+                <td>
+                    <button class="btn btn-secondary" style="width:100%;" @onclick="() => ReturnBook(singleBook.Borrowings.First())">
+                        @Localizer["ReturnIt"]
+                    </button>
+                </td>
+                }
+
+            </tr>
                 }
             }
 
         </tbody>
     </table>
 </div>
-
     <div class="row justify-content-md-start">
         <button class="btn btn-pagination" @onclick="StartPage"><i class="oi oi-media-skip-backward"></i></button>
         <button class="btn btn-pagination" @onclick="PreviousPage"><i class="oi oi-media-step-backward"></i></button>
@@ -68,9 +89,11 @@ else
         <button class="btn btn-pagination" @onclick="NextPage"><i class="oi oi-media-step-forward"></i></button>
         <button class="btn btn-pagination" @onclick="LastPage"><i class="oi oi-media-skip-forward"></i></button>
     </div>
-}
+    }
 
-@code{
+    @code{
+    private SimpleLibrarySystem.Pages.Modals.Modal_BorrowBook Modal { get; set; }
+
     private List<Book> books;
     private List<Book> filteredBooks;
 
@@ -78,6 +101,26 @@ else
     {
         books = await BooksService.GetBooksListAsync();
         CalculatePages();
+
+        BooksService.Notify += OnNotify;
+    }
+
+    public async Task OnNotify(string s)
+    {
+        await InvokeAsync(() =>
+        {
+            ReloadBooks();
+            StateHasChanged();
+        });
+    }
+
+    private async Task ReloadBooks()
+    {
+        books = await BooksService.GetBooksListAsync();
+    }
+    private async Task ReturnBook(Borrowings borrowing)
+    {
+        await BooksService.ReturnBookAsync(borrowing);
     }
 
     //filters
@@ -129,4 +172,4 @@ else
         if (currentPage > maxPage)
             currentPage = maxPage;
     }
-}
+    }

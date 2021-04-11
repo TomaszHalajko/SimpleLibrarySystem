@@ -120,6 +120,9 @@
   <data name="AuthorFilter" xml:space="preserve">
     <value>Filtruj po autorze</value>
   </data>
+  <data name="Available" xml:space="preserve">
+    <value>Dostępna</value>
+  </data>
   <data name="BookAuthor" xml:space="preserve">
     <value>Autor</value>
   </data>
@@ -135,8 +138,41 @@
   <data name="BookTitle" xml:space="preserve">
     <value>Tytuł</value>
   </data>
+  <data name="Borrow" xml:space="preserve">
+    <value>Wypożycz</value>
+  </data>
+  <data name="BorrowBook" xml:space="preserve">
+    <value>Wypożycz książkę</value>
+  </data>
+  <data name="BorrowedUntil" xml:space="preserve">
+    <value>Wypożyczona do</value>
+  </data>
+  <data name="BorrowIt" xml:space="preserve">
+    <value>Wypożycz</value>
+  </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>Stworzony przez</value>
+  </data>
+  <data name="CustomerAddress" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="CustomerEmail" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>Nazwisko</value>
+  </data>
+  <data name="CustomerPhoneNumber" xml:space="preserve">
+    <value>Numer telefonu</value>
+  </data>
+  <data name="CustomerVorname" xml:space="preserve">
+    <value>Imię</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filtruj</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Od</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Strona główna</value>
@@ -165,11 +201,26 @@
   <data name="Report" xml:space="preserve">
     <value>Wykaz wypożyczeń książek</value>
   </data>
+  <data name="ReturnIt" xml:space="preserve">
+    <value>Zwróć</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Wybierz</value>
+  </data>
+  <data name="SelectCustomer" xml:space="preserve">
+    <value>Wybierz osobę z tabeli poniżej</value>
+  </data>
+  <data name="SelectedCustomer" xml:space="preserve">
+    <value>Dane wybranej osoby</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Prosty system biblioteczny</value>
   </data>
   <data name="TitleFilter" xml:space="preserve">
     <value>Filtruj po tytule</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>Do</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Nazwa użytkownika</value>

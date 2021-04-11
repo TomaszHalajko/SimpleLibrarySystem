@@ -18,6 +18,19 @@ namespace SimpleLibrarySystem.Data
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<Borrowings>()
+                .HasKey(c => new { c.CustomerID, c.BookID });
+
+            builder.Entity<Borrowings>()
+                .HasOne<Customer>(cp => cp.Customer)
+                .WithMany(s => s.Borrowings)
+                .HasForeignKey(cp => cp.CustomerID);
+
+            builder.Entity<Borrowings>()
+                .HasOne<Book>(cp => cp.Book)
+                .WithMany(s => s.Borrowings)
+                .HasForeignKey(cp => cp.BookID);
+
             builder.Entity<Book>().HasData(
                 new Book { BookID = "2013-000001", Name="Szklany tron", Author="Sarah J. Mass", Publisher="Uroboros", ReleaseDate = 2013, ISBN= "9788377478844" },
                 new Book { BookID = "2012-000001", Name = "Drużyna Pierścienia", Author = "J.R.R. Tolkien", Publisher = "Amber", ReleaseDate = 2012, ISBN= "9788324144242" },
@@ -31,5 +44,7 @@ namespace SimpleLibrarySystem.Data
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<Borrowings> Borrowings { get; set; }
     }
 }
