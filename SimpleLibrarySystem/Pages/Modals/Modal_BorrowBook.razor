@@ -63,10 +63,10 @@
                                 </tr>
                                 <tr style="height: 30px; color:#FFFFFF;">
                                     <td align="center">
-                                        <input class="form-control" type="text" placeholder="@Localizer["Filter"]" @bind="FilterTitle" @bind:event="oninput" />
+                                        <input class="form-control" type="text" placeholder="@Localizer["Filter"]" @bind="FilterID" @bind:event="oninput" />
                                     </td>
                                     <td align="center">
-                                        <input class="form-control" type="text" placeholder="@Localizer["Filter"]" @bind="FilterAuthor" @bind:event="oninput" />
+                                        <input class="form-control" type="text" placeholder="@Localizer["Filter"]" @bind="FilterName" @bind:event="oninput" />
                                     </td>
                                     <td></td>
                                     <td></td>
@@ -77,9 +77,9 @@
                             </thead>
                             <tbody>
                                 @{
-                                    filteredCustomers = customers.Where(e => (String.IsNullOrEmpty(FilterTitle) || e.CustomerID.Contains(FilterTitle, StringComparison.OrdinalIgnoreCase)) && (String.IsNullOrEmpty(FilterAuthor) || e.Name.Contains(FilterAuthor, StringComparison.OrdinalIgnoreCase))).ToList();
+                                    filteredCustomers = customers.Where(e => (String.IsNullOrEmpty(FilterID) || e.CustomerID.Contains(FilterID, StringComparison.OrdinalIgnoreCase)) && (String.IsNullOrEmpty(FilterName) || e.Name.Contains(FilterName, StringComparison.OrdinalIgnoreCase))).ToList();
                                 }
-                                @for (int i = ((currentPage - 1) * itemsPerPage); i >= 0 && i < ((currentPage - 1) * itemsPerPage) + itemsPerPage && i < customers.Where(e => (String.IsNullOrEmpty(FilterTitle) || e.CustomerID.Contains(FilterTitle, StringComparison.OrdinalIgnoreCase)) && (String.IsNullOrEmpty(FilterAuthor) || e.Name.Contains(FilterAuthor, StringComparison.OrdinalIgnoreCase))).ToList().Count; i++)
+                                @for (int i = ((currentPage - 1) * itemsPerPage); i >= 0 && i < ((currentPage - 1) * itemsPerPage) + itemsPerPage && i < customers.Where(e => (String.IsNullOrEmpty(FilterID) || e.CustomerID.Contains(FilterID, StringComparison.OrdinalIgnoreCase)) && (String.IsNullOrEmpty(FilterName) || e.Name.Contains(FilterName, StringComparison.OrdinalIgnoreCase))).ToList().Count; i++)
                                 {
                                     if (customers[i] != null)
                                     {
@@ -256,18 +256,18 @@
     }
 
     //filters
-    private string _FilterTitle;
-    public string FilterTitle
+    private string _FilterID;
+    public string FilterID
     {
-        get { return _FilterTitle; }
-        set { _FilterTitle = value; CalculatePages(); currentPage = 1; }
+        get { return _FilterID; }
+        set { _FilterID = value; CalculatePages(); currentPage = 1; }
     }
 
-    private string _FilterAuthor;
-    public string FilterAuthor
+    private string _FilterName;
+    public string FilterName
     {
-        get { return _FilterAuthor; }
-        set { _FilterAuthor = value; CalculatePages(); currentPage = 1; }
+        get { return _FilterName; }
+        set { _FilterName = value; CalculatePages(); currentPage = 1; }
     }
 
 
@@ -296,7 +296,7 @@
     }
     private void CalculatePages()
     {
-        int count = customers.Where(e => (String.IsNullOrEmpty(FilterTitle) || e.CustomerID.Contains(FilterTitle, StringComparison.OrdinalIgnoreCase)) && (String.IsNullOrEmpty(FilterAuthor) || e.Name.Contains(FilterAuthor, StringComparison.OrdinalIgnoreCase))).ToList().Count;
+        int count = customers.Where(e => (String.IsNullOrEmpty(FilterID) || e.CustomerID.Contains(FilterID, StringComparison.OrdinalIgnoreCase)) && (String.IsNullOrEmpty(FilterName) || e.Name.Contains(FilterName, StringComparison.OrdinalIgnoreCase))).ToList().Count;
         maxPage = (count / itemsPerPage);
         if (count % itemsPerPage > 0 || count == 0)
             maxPage += 1;

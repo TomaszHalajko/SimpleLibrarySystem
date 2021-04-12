@@ -52,7 +52,14 @@ else
                         <td>@singleBook.Publisher</td>
                         <td>@singleBook.ReleaseDate</td>
                         <td>@singleBook.ISBN</td>
-                        <td>Status placeholder</td>
+                        @if (singleBook.Borrowings != null && singleBook.Borrowings.Count == 0)
+                        {
+                            <td>@Localizer["Available"]</td>
+                        }
+                        else
+                        {
+                            <td>@Localizer["BorrowedUntil"] @singleBook.Borrowings.First().EndDate.ToString("d")</td>
+                        }
                     </tr>
                 }
             }

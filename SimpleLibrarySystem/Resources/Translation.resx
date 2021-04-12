@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutMe" xml:space="preserve">
+    <value>About me</value>
+  </data>
   <data name="AuthorFilter" xml:space="preserve">
     <value>Author filter</value>
   </data>
@@ -125,6 +128,9 @@
   </data>
   <data name="BookAuthor" xml:space="preserve">
     <value>Author</value>
+  </data>
+  <data name="BookID" xml:space="preserve">
+    <value>Book ID</value>
   </data>
   <data name="BookPublisher" xml:space="preserve">
     <value>Publisher</value>
@@ -159,6 +165,9 @@
   <data name="CustomerEmail" xml:space="preserve">
     <value>E-mail</value>
   </data>
+  <data name="CustomerID" xml:space="preserve">
+    <value>Customer ID</value>
+  </data>
   <data name="CustomerName" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -167,6 +176,12 @@
   </data>
   <data name="CustomerVorname" xml:space="preserve">
     <value>Vorname</value>
+  </data>
+  <data name="DaysLate" xml:space="preserve">
+    <value>days late</value>
+  </data>
+  <data name="DaysLeft" xml:space="preserve">
+    <value>days left</value>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Filter</value>

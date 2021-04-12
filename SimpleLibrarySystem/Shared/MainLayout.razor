@@ -1,12 +1,13 @@
 ﻿@inherits LayoutComponentBase
+@inject IStringLocalizer<SimpleLibrarySystem.Resources.Translation> Localizer
 <div class="sidebar">
     <NavMenu />
 </div>
 
 <div class="main">
     <div class="top-row px-4">
-        <span class="pr-2"></span><LanguageChoice/>
-        <a href="https://thdev.eu" target="_blank">About me</a>
+        <span class="pr-2"></span><LanguageChoice />
+        <a href="https://thdev.eu" target="_blank">@Localizer["AboutMe"]</a>
     </div>
 
     <div class="content px-4">

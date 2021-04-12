@@ -1,11 +1,39 @@
 ﻿@inject IStringLocalizer<SimpleLibrarySystem.Resources.Translation> Localizer
 @page "/"
 
-<h1>@Localizer["Title"]</h1>
+    <div class="grid-container">
+        <div class="grid-item">
+            <div>
+                <h1>@Localizer["Title"]</h1>
+                <h5>@Localizer["CreatedBy"]: Tomasz Hałajko</h5>
+            </div>
+        </div>
+        <div class="grid-item">
+            <div>
+                <h3>Technologie użyte w projekcie:</h3>
+                <h5>ASP.NET Core Blazor, C#, Entity Framework</h5>
+            </div>
+        </div>
+        <div class="grid-item">
+            
+        </div>
+        <div class="grid-item">
+             
+        </div>
+        <div class="grid-item">
+            <div>
+                <h3>@Localizer["LoginData"]:</h3>
+                <h5>@Localizer["Username"]: prac</h5>
+                <h5>@Localizer["Password"]: prac1</h5>
+            </div>
+        </div>
+        <div class="grid-item itemImg">
+            <img src="/images/background.png" asp-append-version="true" width="100%" height="100%" />
+        </div>
+        <div class="grid-item">
+            <div>
+                <h3>GitHub: <a href="https://github.com/TomaszHalajko/SimpleLibrarySystem">Link</a></h3>
+            </div>
+        </div>
+    </div>
 
-<h3>@Localizer["CreatedBy"]: Tomasz Hałajko</h3>
-<h3>GitHub: </h3>
-
-<h3>@Localizer["LoginData"]:</h3>
-<h3>@Localizer["Username"]: prac</h3>
-<h3>@Localizer["Password"]: prac1</h3>

@@ -61,6 +61,15 @@ namespace SimpleLibrarySystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About me.
+        /// </summary>
+        public static string AboutMe {
+            get {
+                return ResourceManager.GetString("AboutMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Author filter.
         /// </summary>
         public static string AuthorFilter {
@@ -84,6 +93,15 @@ namespace SimpleLibrarySystem.Resources {
         public static string BookAuthor {
             get {
                 return ResourceManager.GetString("BookAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Book ID.
+        /// </summary>
+        public static string BookID {
+            get {
+                return ResourceManager.GetString("BookID", resourceCulture);
             }
         }
         
@@ -187,6 +205,15 @@ namespace SimpleLibrarySystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customer ID.
+        /// </summary>
+        public static string CustomerID {
+            get {
+                return ResourceManager.GetString("CustomerID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string CustomerName {
@@ -210,6 +237,24 @@ namespace SimpleLibrarySystem.Resources {
         public static string CustomerVorname {
             get {
                 return ResourceManager.GetString("CustomerVorname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to days late.
+        /// </summary>
+        public static string DaysLate {
+            get {
+                return ResourceManager.GetString("DaysLate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to days left.
+        /// </summary>
+        public static string DaysLeft {
+            get {
+                return ResourceManager.GetString("DaysLeft", resourceCulture);
             }
         }
         
