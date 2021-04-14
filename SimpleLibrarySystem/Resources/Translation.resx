@@ -120,6 +120,18 @@
   <data name="AboutMe" xml:space="preserve">
     <value>About me</value>
   </data>
+  <data name="AddBookToDb" xml:space="preserve">
+    <value>Add book to database</value>
+  </data>
+  <data name="AddCustomerToDb" xml:space="preserve">
+    <value>Add customer to database</value>
+  </data>
+  <data name="AddNewBook" xml:space="preserve">
+    <value>Add new book</value>
+  </data>
+  <data name="AddNewCustomer" xml:space="preserve">
+    <value>Add new customer</value>
+  </data>
   <data name="AuthorFilter" xml:space="preserve">
     <value>Author filter</value>
   </data>
@@ -128,6 +140,9 @@
   </data>
   <data name="BookAuthor" xml:space="preserve">
     <value>Author</value>
+  </data>
+  <data name="BookData" xml:space="preserve">
+    <value>Book data</value>
   </data>
   <data name="BookID" xml:space="preserve">
     <value>Book ID</value>
@@ -156,11 +171,17 @@
   <data name="BorrowIt" xml:space="preserve">
     <value>Borrow it</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>Created by</value>
   </data>
   <data name="CustomerAddress" xml:space="preserve">
     <value>Address</value>
+  </data>
+  <data name="CustomerData" xml:space="preserve">
+    <value>Customer data</value>
   </data>
   <data name="CustomerEmail" xml:space="preserve">
     <value>E-mail</value>
@@ -192,6 +213,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="InfoAboutBorrowing" xml:space="preserve">
+    <value>Information about borrowing</value>
+  </data>
   <data name="LibraryCollection" xml:space="preserve">
     <value>Library collection</value>
   </data>
@@ -213,6 +237,21 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="RemoveBook" xml:space="preserve">
+    <value>Remove book from database</value>
+  </data>
+  <data name="RemoveBookConfirmationInfo" xml:space="preserve">
+    <value>Are you sure that you want to remove this book from database?</value>
+  </data>
+  <data name="RemoveCustomer" xml:space="preserve">
+    <value>Remove customer from database</value>
+  </data>
+  <data name="RemoveCustomerConfirmationInfo" xml:space="preserve">
+    <value>Are you sure that you want to remove this customer from database?</value>
+  </data>
   <data name="Report" xml:space="preserve">
     <value>Report of books borrowings</value>
   </data>
@@ -227,6 +266,9 @@
   </data>
   <data name="SelectedCustomer" xml:space="preserve">
     <value>Selected customer data</value>
+  </data>
+  <data name="TechnologiesUsed" xml:space="preserve">
+    <value>Technologies used</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Simple library system</value>

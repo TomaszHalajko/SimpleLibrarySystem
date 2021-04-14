@@ -10,10 +10,15 @@ namespace SimpleLibrarySystem.Data.Tables
     {
         [Key]
         public string BookID { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Author { get; set; }
         public string Publisher { get; set; }
+        [Required]
+        [Range(1000,2099, ErrorMessage = "1000-2099")]
         public int ReleaseDate { get; set; }
+        [Required]
         public string ISBN { get; set; }
         public virtual ICollection<Borrowings> Borrowings { get; set; }
     }

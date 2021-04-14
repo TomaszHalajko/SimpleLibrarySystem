@@ -1,0 +1,158 @@
+﻿@using SimpleLibrarySystem.Data.Services
+@using SimpleLibrarySystem.Data.Tables
+@inject BooksManagementService BooksService
+@inject CustomerManagementService CustomerService
+@inject IStringLocalizer<SimpleLibrarySystem.Resources.Translation> Localizer
+
+    <div class="modal @ModalClass" id="moreInfo" tabindex="-1" role="dialog" aria-labelledby="moreInfoTitle" aria-hidden="true" style="display:@ModalDisplay">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="moreInfoTitle">@Localizer["InfoAboutBorrowing"]</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="() => Close()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @if (currentBook != null && currentCustomer != null)
+                    {
+                        <h5 style="margin-top: 10px;">@Localizer["BookData"]:</h5>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">ID:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="" @bind="currentBook.BookID" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["BookTitle"]:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="" @bind="currentBook.Name" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["BookAuthor"]:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="" @bind="currentBook.Author" disabled />
+                            </div>
+                        </div>
+                        <h5 style="margin-top: 10px;">@Localizer["CustomerData"]:</h5>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">ID:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="" @bind="currentCustomer.CustomerID" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["CustomerVorname"]:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="" @bind="currentCustomer.Vorname" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["CustomerName"]:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="" @bind="currentCustomer.Name" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["CustomerPhoneNumber"]:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="" @bind="currentCustomer.PhoneNumber" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["CustomerEmail"]:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="" @bind="currentCustomer.Email" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["CustomerAddress"]:</p>
+                            </div>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" placeholder="" @bind="currentCustomer.Address" disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["From"]:</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" placeholder="" value="@currentBook.Borrowings.First().StartDate.ToString("d")" disabled />
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="p-modal-th">@Localizer["To"]:</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" placeholder="" value="@currentBook.Borrowings.First().EndDate.ToString("d")" disabled />
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => Close()">@Localizer["Close"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop show"></div>
+}
+
+
+@code {
+    //modal
+    public string ModalDisplay = "none;";
+    public string ModalClass = "";
+    public bool ShowBackdrop = false;
+
+    private Book currentBook;
+    private Customer currentCustomer;
+
+
+    public void Open(Book book)
+    {
+        ModalDisplay = "block;";
+        ModalClass = "Show";
+        ShowBackdrop = true;
+        currentBook = book;
+        currentCustomer = book.Borrowings.First().Customer;
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        ModalDisplay = "none";
+        ModalClass = "";
+        ShowBackdrop = false;
+        currentBook = null;
+        currentCustomer = null;
+        StateHasChanged();
+    }
+
+    public bool IsClosed()
+    {
+        return isSaved;
+    }
+
+    public bool isSaved = false;
+}

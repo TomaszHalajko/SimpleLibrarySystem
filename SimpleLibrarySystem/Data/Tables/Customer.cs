@@ -10,8 +10,11 @@ namespace SimpleLibrarySystem.Data.Tables
     {
         [Key]
         public string CustomerID { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Vorname { get; set; }
+        [Required]
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }

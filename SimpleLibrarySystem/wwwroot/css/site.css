@@ -149,6 +149,10 @@ app {
     .main .top-row a, .main .top-row .btn-link {
         margin-left: 0;
     }
+
+    .modal-content{
+        max-height: 30em;
+    }
 }
 
 @media (min-width: 768px) {
@@ -180,6 +184,10 @@ app {
     .sidebar .collapse {
         /* Never collapse the sidebar for wide screens */
         display: block;
+    }
+
+    .modal-content {
+        max-height: 50em;
     }
 }
 
@@ -252,4 +260,13 @@ input{
 
 .td-dayslate-th{
     background-color: red;
+}
+
+.btn{
+    font-size: small;
+}
+
+.table td{
+    font-size: small;
+    vertical-align: middle;
 }

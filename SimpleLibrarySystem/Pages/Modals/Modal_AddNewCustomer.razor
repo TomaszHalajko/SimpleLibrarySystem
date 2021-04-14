@@ -1,0 +1,124 @@
+﻿@using SimpleLibrarySystem.Data.Services
+@using SimpleLibrarySystem.Data.Tables
+@inject CustomerManagementService CustomerService
+@inject IStringLocalizer<SimpleLibrarySystem.Resources.Translation> Localizer
+
+<div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 500px;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@Localizer["AddCustomerToDb"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="() => Close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <EditForm Model="@currentCustomer" OnSubmit="@AddCustomer">
+                <div class="modal-body">
+
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="p-modal-th">@Localizer["CustomerVorname"]:</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <InputText class="form-control" @bind-Value="currentCustomer.Vorname" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="p-modal-th">@Localizer["CustomerName"]:</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <InputText class="form-control" @bind-Value="currentCustomer.Name" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="p-modal-th">@Localizer["CustomerPhoneNumber"]:</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <InputText class="form-control" @bind-Value="currentCustomer.PhoneNumber" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="p-modal-th">@Localizer["CustomerEmail"]:</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <InputText class="form-control" @bind-Value="currentCustomer.Email" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="p-modal-th">@Localizer["CustomerAddress"]:</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <InputText class="form-control" @bind-Value="currentCustomer.Address" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="() => Close()">@Localizer["Close"]</button>
+                    <button type="submit" class="btn btn-primary">@Localizer["AddNewCustomer"]</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+
+    public string ModalDisplay = "none;";
+    public string ModalClass = "";
+    public bool ShowBackdrop = false;
+
+    public void Open()
+    {
+        ModalDisplay = "block;";
+        ModalClass = "Show";
+        ShowBackdrop = true;
+        currentCustomer = new Customer();
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        ModalDisplay = "none";
+        ModalClass = "";
+        ShowBackdrop = false;
+        StateHasChanged();
+    }
+
+    public bool IsClosed()
+    {
+        return isSaved;
+    }
+
+    public bool isSaved = false;
+
+    private Customer currentCustomer { get; set; } = new Customer();
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(currentCustomer);
+    }
+
+    private async Task AddCustomer()
+    {
+        var isValid = editContext.Validate();
+        if (isValid)
+        {
+            isSaved = await CustomerService.AddCustomerAsync(currentCustomer);
+            Close();
+        }
+    }
+}

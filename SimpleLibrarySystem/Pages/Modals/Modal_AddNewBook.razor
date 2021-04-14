@@ -1,0 +1,124 @@
+﻿@using SimpleLibrarySystem.Data.Services
+@using SimpleLibrarySystem.Data.Tables
+@inject BooksManagementService BooksService
+@inject IStringLocalizer<SimpleLibrarySystem.Resources.Translation> Localizer
+
+<div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 500px;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@Localizer["AddBookToDb"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="() => Close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <EditForm Model="@currentBook" OnSubmit="@AddBook">
+                <div class="modal-body">
+
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="p-modal-th">@Localizer["BookTitle"]:</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <InputText class="form-control" @bind-Value="currentBook.Name" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="p-modal-th">@Localizer["BookAuthor"]:</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <InputText class="form-control" @bind-Value="currentBook.Author" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="p-modal-th">@Localizer["BookPublisher"]:</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <InputText class="form-control" @bind-Value="currentBook.Publisher" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="p-modal-th">@Localizer["BookReleaseDate"]:</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <InputNumber class="form-control" @bind-Value="currentBook.ReleaseDate" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="p-modal-th">ISBN:</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <InputText class="form-control" @bind-Value="currentBook.ISBN" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="() => Close()">@Localizer["Close"]</button>
+                    <button type="submit" class="btn btn-primary">@Localizer["AddNewBook"]</button>
+                </div>
+            </EditForm> 
+        </div>
+    </div>
+</div>
+
+
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+
+    public string ModalDisplay = "none;";
+    public string ModalClass = "";
+    public bool ShowBackdrop = false;
+
+    public void Open()
+    {
+        ModalDisplay = "block;";
+        ModalClass = "Show";
+        ShowBackdrop = true;
+        currentBook = new Book() { ReleaseDate = DateTime.UtcNow.Year };
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        ModalDisplay = "none";
+        ModalClass = "";
+        ShowBackdrop = false;
+        StateHasChanged();
+    }
+
+    public bool IsClosed()
+    {
+        return isSaved;
+    }
+
+    public bool isSaved = false;
+
+    private Book currentBook { get; set; } = new Book(){ ReleaseDate = DateTime.UtcNow.Year };
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(currentBook);
+    }
+
+    private async Task AddBook()
+    {
+        var isValid = editContext.Validate();
+        if(isValid)
+        {
+            isSaved = await BooksService.AddBookAsync(currentBook);
+            Close();
+        }
+    }
+}

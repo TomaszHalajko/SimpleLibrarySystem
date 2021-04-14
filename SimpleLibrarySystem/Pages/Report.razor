@@ -4,62 +4,57 @@
 @inject BooksManagementService BooksService
 @inject IStringLocalizer<SimpleLibrarySystem.Resources.Translation> Localizer
 
+<SimpleLibrarySystem.Pages.Modals.Modal_MoreInfoReport @ref="Modal"></SimpleLibrarySystem.Pages.Modals.Modal_MoreInfoReport>
+
 @if (books == null)
 {
     <p><em>@Localizer["Loading"]</em></p>
 }
 else
 {
-<div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>@Localizer["BookID"]</th>
-                <th>@Localizer["BookTitle"]</th>
-                <th>@Localizer["BookAuthor"]</th>
-                <th>@Localizer["CustomerID"]</th>
-                <th>@Localizer["CustomerVorname"]</th>
-                <th>@Localizer["CustomerName"]</th>
-                <th>@Localizer["CustomerPhoneNumber"]</th>
-                <th>@Localizer["CustomerEmail"]</th>
-                <th>@Localizer["BookStatus"]</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = ((currentPage - 1) * itemsPerPage); i >= 0 && i < ((currentPage - 1) * itemsPerPage) + itemsPerPage; i++)
-            {
-                Book singleBook = books[i];
-                if (singleBook != null)
+<div style="width: 50%; margin: auto;">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>@Localizer["BookID"]</th>
+                    <th>@Localizer["BookTitle"]</th>
+                    <th>@Localizer["BookAuthor"]</th>
+                    <th>@Localizer["BookStatus"]</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = ((currentPage - 1) * itemsPerPage); i >= 0 && i < ((currentPage - 1) * itemsPerPage) + itemsPerPage && i < books.Count; i++)
                 {
-                    Customer currentCustomer = singleBook.Borrowings.First().Customer;
-                    <tr>
-                        <td>@singleBook.BookID</td>
-                        <td>@singleBook.Name</td>
-                        <td>@singleBook.Author</td>
-                        <td>@currentCustomer.CustomerID</td>
-                        <td>@currentCustomer.Vorname</td>
-                        <td>@currentCustomer.Name</td>
-                        <td>@currentCustomer.PhoneNumber</td>
-                        <td><a href="mailto:@currentCustomer.Email">@currentCustomer.Email</a></td>
-                        @{
-                            int days = (singleBook.Borrowings.First().EndDate - DateTime.UtcNow).Days;
-                        }
-                        @if (days >= 0)
-                        {
-                            <td class="td-daysleft-th">@days  @Localizer["DaysLeft"]</td>
-                        }
-                        else
-                        {
-                            <td class="td-dayslate-th">@Math.Abs(days) @Localizer["DaysLate"]</td>
-                        }
-                    </tr>
+                    Book singleBook = books[i];
+                    if (singleBook != null)
+                    {
+                        Customer currentCustomer = singleBook.Borrowings.First().Customer;
+                        <tr>
+                            <td>@singleBook.BookID</td>
+                            <td>@singleBook.Name</td>
+                            <td>@singleBook.Author</td>
+                            @*<td><a href="mailto:@currentCustomer.Email">@currentCustomer.Email</a></td>*@
+                            @{
+                                int days = (singleBook.Borrowings.First().EndDate - DateTime.UtcNow).Days;
+                            }
+                            @if (days >= 0)
+                            {
+                                <td class="td-daysleft-th">@days  @Localizer["DaysLeft"]</td>
+                            }
+                            else
+                            {
+                                <td class="td-dayslate-th">@Math.Abs(days) @Localizer["DaysLate"]</td>
+                            }
+                            <td><button class="btn btn-info" @onclick="() => Modal.Open(singleBook)">i</button></td>
+                        </tr>
+                    }
                 }
-            }
 
-        </tbody>
-    </table>
-</div>
-
+            </tbody>
+        </table>
+    </div>
     <div class="row justify-content-md-start">
         <button class="btn btn-pagination" @onclick="StartPage"><i class="oi oi-media-skip-backward"></i></button>
         <button class="btn btn-pagination" @onclick="PreviousPage"><i class="oi oi-media-step-backward"></i></button>
@@ -67,9 +62,12 @@ else
         <button class="btn btn-pagination" @onclick="NextPage"><i class="oi oi-media-step-forward"></i></button>
         <button class="btn btn-pagination" @onclick="LastPage"><i class="oi oi-media-skip-forward"></i></button>
     </div>
+</div>
+    
 }
 
 @code{
+    private SimpleLibrarySystem.Pages.Modals.Modal_MoreInfoReport Modal { get; set; }
     private List<Book> books;
 
     protected override async Task OnInitializedAsync()
@@ -80,7 +78,7 @@ else
     }
 
     //pagination
-    private int itemsPerPage = 1;
+    private int itemsPerPage = 10;
     private int currentPage = 1;
     private int maxPage = 1;
 

@@ -67,5 +67,60 @@ namespace SimpleLibrarySystem.Data.Services
             }
             return Task.FromResult(true);
         }
+
+        public Task<bool> RemoveBookAsync(Book currentBook)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ApplicationDbContext context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+                //need to tell context that state is unchanged 
+                context.Entry(currentBook).State = EntityState.Unchanged;
+
+                context.Books.Remove(currentBook);
+                context.SaveChanges();
+
+                if (Notify != null)
+                    Notify.Invoke(String.Empty);
+            }
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> AddBookAsync(Book currentBook)
+        {
+            using (var scope = _serviceScopeFactory.CreateScope())
+            {
+                ApplicationDbContext context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+                string lastId = "";
+                List<Book> booksSameYear = context.Books.Where(e => e.ReleaseDate == currentBook.ReleaseDate).ToList();
+                if (booksSameYear.Count() > 0)
+                {
+                    Book last = booksSameYear.Last();
+                    lastId = last.BookID;
+                    int id = int.Parse(lastId.Split('-').Last()) + 1;
+                    string id_s = id.ToString();
+                    lastId = currentBook.ReleaseDate.ToString() + "-";
+                    for(int i = id_s.Length; i < 6; i++)
+                    {
+                        lastId += "0";
+                    }
+                    lastId += id_s;
+                }
+                else
+                {
+                    lastId = currentBook.ReleaseDate.ToString() + "-000001";
+                }
+                currentBook.BookID = lastId;
+
+                //borrowing book only for one month
+                context.Books.Add(currentBook);
+                context.SaveChanges();
+
+                if (Notify != null)
+                    Notify.Invoke(String.Empty);
+            }
+            return Task.FromResult(true);
+        }
     }
 }

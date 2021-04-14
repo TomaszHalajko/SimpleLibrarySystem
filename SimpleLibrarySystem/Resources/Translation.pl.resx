@@ -120,6 +120,18 @@
   <data name="AboutMe" xml:space="preserve">
     <value>O mnie</value>
   </data>
+  <data name="AddBookToDb" xml:space="preserve">
+    <value>Dodaj książkę do bazy danych</value>
+  </data>
+  <data name="AddCustomerToDb" xml:space="preserve">
+    <value>Dodaj użytkownika do bazy danych</value>
+  </data>
+  <data name="AddNewBook" xml:space="preserve">
+    <value>Dodaj nową książkę</value>
+  </data>
+  <data name="AddNewCustomer" xml:space="preserve">
+    <value>Dodaj nowego użytkownika</value>
+  </data>
   <data name="AuthorFilter" xml:space="preserve">
     <value>Filtruj po autorze</value>
   </data>
@@ -128,6 +140,9 @@
   </data>
   <data name="BookAuthor" xml:space="preserve">
     <value>Autor</value>
+  </data>
+  <data name="BookData" xml:space="preserve">
+    <value>Dane książki</value>
   </data>
   <data name="BookID" xml:space="preserve">
     <value>ID książki</value>
@@ -156,11 +171,17 @@
   <data name="BorrowIt" xml:space="preserve">
     <value>Wypożycz</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zamknij</value>
+  </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>Stworzony przez</value>
   </data>
   <data name="CustomerAddress" xml:space="preserve">
     <value>Adres</value>
+  </data>
+  <data name="CustomerData" xml:space="preserve">
+    <value>Dane użytkownika</value>
   </data>
   <data name="CustomerEmail" xml:space="preserve">
     <value>E-mail</value>
@@ -192,6 +213,9 @@
   <data name="Home" xml:space="preserve">
     <value>Strona główna</value>
   </data>
+  <data name="InfoAboutBorrowing" xml:space="preserve">
+    <value>Informacje o wypożyczeniu</value>
+  </data>
   <data name="LibraryCollection" xml:space="preserve">
     <value>Zbiór biblioteczny</value>
   </data>
@@ -213,6 +237,21 @@
   <data name="Password" xml:space="preserve">
     <value>Hasło</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="RemoveBook" xml:space="preserve">
+    <value>Usuń książkę z bazy danych</value>
+  </data>
+  <data name="RemoveBookConfirmationInfo" xml:space="preserve">
+    <value>Jesteś pewien, że chcesz usunąć tę książkę z bazy danych?</value>
+  </data>
+  <data name="RemoveCustomer" xml:space="preserve">
+    <value>Usuń użytkownika z bazy danych</value>
+  </data>
+  <data name="RemoveCustomerConfirmationInfo" xml:space="preserve">
+    <value>Jesteś pewien, że chcesz usunąć tego użytkownika z bazy danych?</value>
+  </data>
   <data name="Report" xml:space="preserve">
     <value>Wykaz wypożyczeń książek</value>
   </data>
@@ -227,6 +266,9 @@
   </data>
   <data name="SelectedCustomer" xml:space="preserve">
     <value>Dane wybranej osoby</value>
+  </data>
+  <data name="TechnologiesUsed" xml:space="preserve">
+    <value>Technologie użyte</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Prosty system biblioteczny</value>
