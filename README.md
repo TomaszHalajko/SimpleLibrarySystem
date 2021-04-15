@@ -4,10 +4,10 @@ Basically this system is built around database from which app is reading all of 
 
 This web app is available on [my page](http://thdev.hostingasp.pl/).
 
-Functionalities of web app:
--reading data from database
--writing new records to tables
--analyzing data from database - locking some functions when conditions aren't met
--working translation system
+Functionalities of web app: <br/>
+-reading data from database <br/>
+-writing new records to tables <br/>
+-analyzing data from database - locking some functions when conditions aren't met <br/>
+-working translation system <br/>
 
 Also you can check my [portfolio page](https://thdev.eu/). where I showed some of my other projects from past( mostly game development ).
