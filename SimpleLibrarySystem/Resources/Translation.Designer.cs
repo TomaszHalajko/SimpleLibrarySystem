@@ -394,11 +394,20 @@ namespace SimpleLibrarySystem.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Management.
+        ///   Looks up a localized string similar to Books management.
         /// </summary>
-        public static string Management {
+        public static string ManagementBooks {
             get {
-                return ResourceManager.GetString("Management", resourceCulture);
+                return ResourceManager.GetString("ManagementBooks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customers management.
+        /// </summary>
+        public static string ManagementCustomers {
+            get {
+                return ResourceManager.GetString("ManagementCustomers", resourceCulture);
             }
         }
         
@@ -471,6 +480,24 @@ namespace SimpleLibrarySystem.Resources {
         public static string Report {
             get {
                 return ResourceManager.GetString("Report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Return book to collection.
+        /// </summary>
+        public static string ReturnBook {
+            get {
+                return ResourceManager.GetString("ReturnBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure that you want to return this book to collection?.
+        /// </summary>
+        public static string ReturnBookConfirmationInfo {
+            get {
+                return ResourceManager.GetString("ReturnBookConfirmationInfo", resourceCulture);
             }
         }
         

@@ -228,8 +228,11 @@
   <data name="LoginData" xml:space="preserve">
     <value>Dane do logowania dla pracownika</value>
   </data>
-  <data name="Management" xml:space="preserve">
-    <value>Zarządzanie</value>
+  <data name="ManagementBooks" xml:space="preserve">
+    <value>Zarządzanie książkami</value>
+  </data>
+  <data name="ManagementCustomers" xml:space="preserve">
+    <value>Zarządzanie użytkownikami</value>
   </data>
   <data name="PaginationOf" xml:space="preserve">
     <value>z</value>
@@ -254,6 +257,12 @@
   </data>
   <data name="Report" xml:space="preserve">
     <value>Wykaz wypożyczeń książek</value>
+  </data>
+  <data name="ReturnBook" xml:space="preserve">
+    <value>Zwróć książkę do zbioru</value>
+  </data>
+  <data name="ReturnBookConfirmationInfo" xml:space="preserve">
+    <value>Jesteś pewien, że chcesz zwrócić tę książkę do zbioru?</value>
   </data>
   <data name="ReturnIt" xml:space="preserve">
     <value>Zwróć</value>

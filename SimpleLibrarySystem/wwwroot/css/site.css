@@ -229,8 +229,9 @@ input{
     width: 100%;
 }
 
-#p-modal-th {
+.p-modal-th {
     padding-top: 5px;
+    font-size: small;
 }
 
 .grid-container {
@@ -256,6 +257,7 @@ input{
 
 .td-daysleft-th{
     background-color: lightgreen;
+    
 }
 
 .td-dayslate-th{
@@ -269,4 +271,20 @@ input{
 .table td{
     font-size: small;
     vertical-align: middle;
+}
+
+.form-control{
+    font-size: small;
+}
+
+.report-table-pagination{
+    margin-left:10px;
+}
+
+.table th{
+    border-top: 0px;
+}
+
+.thead-noborder {
+    border-bottom: 0px !important;
 }

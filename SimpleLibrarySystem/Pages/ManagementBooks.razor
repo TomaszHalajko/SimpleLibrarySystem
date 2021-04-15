@@ -13,12 +13,13 @@
 }
 else
 {
+<h3>@Localizer["ManagementBooks"]</h3>
     <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
-                    <th>
-                        <button type="button" class="btn btn-primary" @onclick="() => ModalAddBook.Open()" >
+                    <th class="thead-noborder">
+                        <button type="button" class="btn btn-primary" @onclick="() => ModalAddBook.Open()">
                             @Localizer["AddNewBook"]
                         </button>
                     </th>
@@ -26,83 +27,83 @@ else
             </thead>
         </table>
     </div>
-<div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>@Localizer["BookTitle"]</th>
-                <th>@Localizer["BookAuthor"]</th>
-                <th>@Localizer["BookPublisher"]</th>
-                <th>@Localizer["BookReleaseDate"]</th>
-                <th>ISBN</th>
-                <th></th>
-            </tr>
-            <tr style="height: 30px; color:#FFFFFF;">
-                <td></td>
-                <td align="center">
-                    <input class="form-control" type="text" placeholder="@Localizer["TitleFilter"]" @bind="FilterTitle" @bind:event="oninput" />
-                </td>
-                <td align="center">
-                    <input class="form-control" type="text" placeholder="@Localizer["AuthorFilter"]" @bind="FilterAuthor" @bind:event="oninput" />
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                filteredBooks = books.Where(e => (String.IsNullOrEmpty(FilterTitle) || e.Name.Contains(FilterTitle, StringComparison.OrdinalIgnoreCase)) && (String.IsNullOrEmpty(FilterAuthor) || e.Author.Contains(FilterAuthor, StringComparison.OrdinalIgnoreCase))).ToList();
-            }
-            @for (int i = ((currentPage - 1) * itemsPerPage); i >= 0 && i < ((currentPage - 1) * itemsPerPage) + itemsPerPage && i < books.Where(e => (String.IsNullOrEmpty(FilterTitle) || e.Name.Contains(FilterTitle, StringComparison.OrdinalIgnoreCase)) && (String.IsNullOrEmpty(FilterAuthor) || e.Author.Contains(FilterAuthor, StringComparison.OrdinalIgnoreCase))).ToList().Count; i++)
-            {
-                if (books[i] != null)
-                {
-                    Book singleBook = filteredBooks[i];
-            <tr>
-                <td>@singleBook.BookID</td>
-                <td>@singleBook.Name</td>
-                <td>@singleBook.Author</td>
-                <td>@singleBook.Publisher</td>
-                <td>@singleBook.ReleaseDate</td>
-                <td>@singleBook.ISBN</td>
-                @if (singleBook.Borrowings != null && singleBook.Borrowings.Count == 0)
-                {
-                <td>
-                    <button class="btn btn-danger" style="width:100%;" @onclick="() => Modal.Open(singleBook)">
-                        @Localizer["Remove"]
-                    </button>
-                </td>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>@Localizer["BookTitle"]</th>
+                    <th>@Localizer["BookAuthor"]</th>
+                    <th>@Localizer["BookPublisher"]</th>
+                    <th>@Localizer["BookReleaseDate"]</th>
+                    <th>ISBN</th>
+                    <th></th>
+                </tr>
+                <tr style="height: 30px; color:#FFFFFF;">
+                    <td></td>
+                    <td align="center">
+                        <input class="form-control" type="text" placeholder="@Localizer["TitleFilter"]" @bind="FilterTitle" @bind:event="oninput" />
+                    </td>
+                    <td align="center">
+                        <input class="form-control" type="text" placeholder="@Localizer["AuthorFilter"]" @bind="FilterAuthor" @bind:event="oninput" />
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    filteredBooks = books.Where(e => (String.IsNullOrEmpty(FilterTitle) || e.Name.Contains(FilterTitle, StringComparison.OrdinalIgnoreCase)) && (String.IsNullOrEmpty(FilterAuthor) || e.Author.Contains(FilterAuthor, StringComparison.OrdinalIgnoreCase))).ToList();
                 }
-                else
+                @for (int i = ((currentPage - 1) * itemsPerPage); i >= 0 && i < ((currentPage - 1) * itemsPerPage) + itemsPerPage && i < books.Where(e => (String.IsNullOrEmpty(FilterTitle) || e.Name.Contains(FilterTitle, StringComparison.OrdinalIgnoreCase)) && (String.IsNullOrEmpty(FilterAuthor) || e.Author.Contains(FilterAuthor, StringComparison.OrdinalIgnoreCase))).ToList().Count; i++)
                 {
-                <td>
-                    <button class="btn btn-danger" style="width:100%;" disabled @onclick="() => Modal.Open(singleBook)">
-                        @Localizer["Remove"]
-                    </button>
-                </td>
+                    if (books[i] != null)
+                    {
+                        Book singleBook = filteredBooks[i];
+                        <tr>
+                            <td>@singleBook.BookID</td>
+                            <td>@singleBook.Name</td>
+                            <td>@singleBook.Author</td>
+                            <td>@singleBook.Publisher</td>
+                            <td>@singleBook.ReleaseDate</td>
+                            <td>@singleBook.ISBN</td>
+                            @if (singleBook.Borrowings != null && singleBook.Borrowings.Count == 0)
+                            {
+                                <td>
+                                    <button class="btn btn-danger" style="width:100%;" @onclick="() => Modal.Open(singleBook)">
+                                        @Localizer["Remove"]
+                                    </button>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <button class="btn btn-danger" style="width:100%;" disabled @onclick="() => Modal.Open(singleBook)">
+                                        @Localizer["Remove"]
+                                    </button>
+                                </td>
+                            }
+
+                        </tr>
+                    }
                 }
 
-            </tr>
-                }
-            }
-
-        </tbody>
-    </table>
-</div>
-    <div class="row justify-content-md-start">
+            </tbody>
+        </table>
+    </div>
+    <div class="row justify-content-md-start report-table-pagination">
         <button class="btn btn-pagination" @onclick="StartPage"><i class="oi oi-media-skip-backward"></i></button>
         <button class="btn btn-pagination" @onclick="PreviousPage"><i class="oi oi-media-step-backward"></i></button>
         <p class="p-modal-th">@currentPage @Localizer["PaginationOf"] @maxPage</p>
         <button class="btn btn-pagination" @onclick="NextPage"><i class="oi oi-media-step-forward"></i></button>
         <button class="btn btn-pagination" @onclick="LastPage"><i class="oi oi-media-skip-forward"></i></button>
     </div>
-    }
+}
 
-    @code{
+@code{
     private SimpleLibrarySystem.Pages.Modals.Modal_RemoveBook Modal { get; set; }
     private SimpleLibrarySystem.Pages.Modals.Modal_AddNewBook ModalAddBook { get; set; }
 
@@ -181,4 +182,4 @@ else
         if (currentPage > maxPage)
             currentPage = maxPage;
     }
-    }
+}

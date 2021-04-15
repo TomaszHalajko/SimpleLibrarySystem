@@ -12,7 +12,8 @@
 }
 else
 {
-<div style="width: 50%; margin: auto;">
+<h3>@Localizer["Report"]</h3>
+<div style="width: 50%; margin: auto; border-style:solid; border-radius: 16px;">
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -41,13 +42,15 @@ else
                             }
                             @if (days >= 0)
                             {
-                                <td class="td-daysleft-th">@days  @Localizer["DaysLeft"]</td>
+                                <td><span class="td-daysleft-th">@days  @Localizer["DaysLeft"]</span></td>
                             }
                             else
                             {
-                                <td class="td-dayslate-th">@Math.Abs(days) @Localizer["DaysLate"]</td>
+                                <td><span class="td-dayslate-th">@Math.Abs(days) @Localizer["DaysLate"]</span></td>
                             }
-                            <td><button class="btn btn-info" @onclick="() => Modal.Open(singleBook)">i</button></td>
+                            <td>
+                                <button class="btn btn-info" @onclick="() => Modal.Open(singleBook)"><i class="oi oi-info"></i></button>
+                            </td>
                         </tr>
                     }
                 }
@@ -55,7 +58,7 @@ else
             </tbody>
         </table>
     </div>
-    <div class="row justify-content-md-start">
+    <div class="row justify-content-md-start report-table-pagination">
         <button class="btn btn-pagination" @onclick="StartPage"><i class="oi oi-media-skip-backward"></i></button>
         <button class="btn btn-pagination" @onclick="PreviousPage"><i class="oi oi-media-step-backward"></i></button>
         <p class="p-modal-th">@currentPage @Localizer["PaginationOf"] @maxPage</p>

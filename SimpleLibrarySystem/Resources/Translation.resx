@@ -228,8 +228,11 @@
   <data name="LoginData" xml:space="preserve">
     <value>Login data for library worker</value>
   </data>
-  <data name="Management" xml:space="preserve">
-    <value>Management</value>
+  <data name="ManagementBooks" xml:space="preserve">
+    <value>Books management</value>
+  </data>
+  <data name="ManagementCustomers" xml:space="preserve">
+    <value>Customers management</value>
   </data>
   <data name="PaginationOf" xml:space="preserve">
     <value>of</value>
@@ -254,6 +257,12 @@
   </data>
   <data name="Report" xml:space="preserve">
     <value>Report of books borrowings</value>
+  </data>
+  <data name="ReturnBook" xml:space="preserve">
+    <value>Return book to collection</value>
+  </data>
+  <data name="ReturnBookConfirmationInfo" xml:space="preserve">
+    <value>Are you sure that you want to return this book to collection?</value>
   </data>
   <data name="ReturnIt" xml:space="preserve">
     <value>Return it</value>

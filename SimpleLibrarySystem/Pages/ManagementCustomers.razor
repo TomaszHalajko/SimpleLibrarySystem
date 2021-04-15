@@ -13,11 +13,12 @@
 }
 else
 {
+<h3>@Localizer["ManagementCustomers"]</h3>
     <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
-                    <th>
+                    <th class="thead-noborder">
                         <button type="button" class="btn btn-primary" @onclick="() => ModalAddCustomer.Open()" >
                             @Localizer["AddNewCustomer"]
                         </button>
@@ -82,7 +83,7 @@ else
         </table>
     </div>
 </div>
-    <div class="row justify-content-md-start">
+    <div class="row justify-content-md-start report-table-pagination">
         <button class="btn btn-pagination" @onclick="StartPage"><i class="oi oi-media-skip-backward"></i></button>
         <button class="btn btn-pagination" @onclick="PreviousPage"><i class="oi oi-media-step-backward"></i></button>
         <p class="p-modal-th">@currentPage @Localizer["PaginationOf"] @maxPage</p>

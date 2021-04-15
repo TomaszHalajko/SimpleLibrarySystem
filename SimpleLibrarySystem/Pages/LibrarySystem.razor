@@ -5,6 +5,7 @@
 @inject IStringLocalizer<SimpleLibrarySystem.Resources.Translation> Localizer
 
 <SimpleLibrarySystem.Pages.Modals.Modal_BorrowBook @ref="Modal"></SimpleLibrarySystem.Pages.Modals.Modal_BorrowBook>
+<SimpleLibrarySystem.Pages.Modals.Modal_ReturnBook @ref="ModalReturnBook"></SimpleLibrarySystem.Pages.Modals.Modal_ReturnBook>
 
 @if (books == null)
 {
@@ -12,6 +13,7 @@
 }
 else
 {
+<h3>@Localizer["LibrarySystem"]</h3>
 <div class="table-responsive">
     <table class="table">
         <thead>
@@ -69,7 +71,7 @@ else
                 {
                 <td>@Localizer["BorrowedUntil"] @singleBook.Borrowings.First().EndDate.ToString("d")</td>
                 <td>
-                    <button class="btn btn-secondary" style="width:100%;" @onclick="() => ReturnBook(singleBook.Borrowings.First())">
+                    <button class="btn btn-secondary" style="width:100%;" @onclick="() => ModalReturnBook.Open(singleBook)">
                         @Localizer["ReturnIt"]
                     </button>
                 </td>
@@ -82,7 +84,7 @@ else
         </tbody>
     </table>
 </div>
-    <div class="row justify-content-md-start">
+    <div class="row justify-content-md-start report-table-pagination">
         <button class="btn btn-pagination" @onclick="StartPage"><i class="oi oi-media-skip-backward"></i></button>
         <button class="btn btn-pagination" @onclick="PreviousPage"><i class="oi oi-media-step-backward"></i></button>
         <p class="p-modal-th">@currentPage @Localizer["PaginationOf"] @maxPage</p>
@@ -93,6 +95,7 @@ else
 
     @code{
     private SimpleLibrarySystem.Pages.Modals.Modal_BorrowBook Modal { get; set; }
+    private SimpleLibrarySystem.Pages.Modals.Modal_ReturnBook ModalReturnBook { get; set; }
 
     private List<Book> books;
     private List<Book> filteredBooks;
@@ -117,10 +120,6 @@ else
     private async Task ReloadBooks()
     {
         books = await BooksService.GetBooksListAsync();
-    }
-    private async Task ReturnBook(Borrowings borrowing)
-    {
-        await BooksService.ReturnBookAsync(borrowing);
     }
 
     //filters

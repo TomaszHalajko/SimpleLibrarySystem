@@ -18,89 +18,89 @@
                     {
                         <h5 style="margin-top: 10px;">@Localizer["BookData"]:</h5>
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p class="p-modal-th">ID:</p>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                                 <input class="form-control" type="text" placeholder="" @bind="currentBook.BookID" disabled />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p class="p-modal-th">@Localizer["BookTitle"]:</p>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                                 <input class="form-control" type="text" placeholder="" @bind="currentBook.Name" disabled />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p class="p-modal-th">@Localizer["BookAuthor"]:</p>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                                 <input class="form-control" type="text" placeholder="" @bind="currentBook.Author" disabled />
                             </div>
                         </div>
                         <h5 style="margin-top: 10px;">@Localizer["CustomerData"]:</h5>
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p class="p-modal-th">ID:</p>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                                 <input class="form-control" type="text" placeholder="" @bind="currentCustomer.CustomerID" disabled />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p class="p-modal-th">@Localizer["CustomerVorname"]:</p>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                                 <input class="form-control" type="text" placeholder="" @bind="currentCustomer.Vorname" disabled />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p class="p-modal-th">@Localizer["CustomerName"]:</p>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                                 <input class="form-control" type="text" placeholder="" @bind="currentCustomer.Name" disabled />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p class="p-modal-th">@Localizer["CustomerPhoneNumber"]:</p>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                                 <input class="form-control" type="text" placeholder="" @bind="currentCustomer.PhoneNumber" disabled />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p class="p-modal-th">@Localizer["CustomerEmail"]:</p>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                                 <input class="form-control" type="text" placeholder="" @bind="currentCustomer.Email" disabled />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                                 <p class="p-modal-th">@Localizer["CustomerAddress"]:</p>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                                 <input class="form-control" type="text" placeholder="" @bind="currentCustomer.Address" disabled />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-2">
+                            <div class="col-sm-1">
                                 <p class="p-modal-th">@Localizer["From"]:</p>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-5">
                                 <input class="form-control" type="text" placeholder="" value="@currentBook.Borrowings.First().StartDate.ToString("d")" disabled />
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-1">
                                 <p class="p-modal-th">@Localizer["To"]:</p>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-5">
                                 <input class="form-control" type="text" placeholder="" value="@currentBook.Borrowings.First().EndDate.ToString("d")" disabled />
                             </div>
                         </div>
