@@ -70,11 +70,27 @@ else
                             <td>@singleCustomer.PhoneNumber</td>
                             <td>@singleCustomer.Email</td>
                             <td>@singleCustomer.Address</td>
-                            <td>
+                            @*<td>
                                 <button class="btn btn-danger" style="width:100%;" @onclick="() => Modal.Open(singleCustomer)">
                                     @Localizer["Remove"]
                                 </button>
-                            </td>
+                            </td>*@
+                            @if (singleCustomer.Borrowings != null && singleCustomer.Borrowings.Count == 0)
+                            {
+                                <td>
+                                    <button class="btn btn-danger" style="width:100%;" @onclick="() => Modal.Open(singleCustomer)">
+                                        @Localizer["Remove"]
+                                    </button>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <button class="btn btn-danger" style="width:100%;" disabled @onclick="() => Modal.Open(singleCustomer)">
+                                        @Localizer["Remove"]
+                                    </button>
+                                </td>
+                            }
                         </tr>
                     }
                 }

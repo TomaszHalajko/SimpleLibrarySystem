@@ -35,7 +35,6 @@ namespace SimpleLibrarySystem
             services.AddControllers();
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<BooksManagementService>();
             services.AddSingleton<CustomerManagementService>();
             services.AddLocalization();

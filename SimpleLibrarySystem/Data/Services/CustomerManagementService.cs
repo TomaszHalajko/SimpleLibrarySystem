@@ -25,7 +25,7 @@ namespace SimpleLibrarySystem.Data.Services
             using (var scope = _serviceScopeFactory.CreateScope())
             {
                 ApplicationDbContext context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                customers = context.Customers.ToList();
+                customers = context.Customers.Include("Borrowings").ToList();
             }
             return Task.FromResult(customers);
         }
