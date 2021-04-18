@@ -151,7 +151,7 @@ app {
     }
 
     .modal-content{
-        max-height: 30em;
+        max-height: 35em;
     }
 }
 
@@ -287,4 +287,7 @@ input{
 
 .thead-noborder {
     border-bottom: 0px !important;
+}
+
+.fakeimg{
 }
